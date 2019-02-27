@@ -2,29 +2,65 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-  <div>{{ wtf.quick_form(form, form_type="horizontal")}} </div>
+  <div>{{ wtf.quick_form(form)}}
+  </div>
 
-<table class ="table table-condensed" width="100%" cellspacing="0">
-    <tbody>
-
-        <tr>
-            <th>Chromosome</th>
-            <th> Start</th>
-            <th>End</th>
-            <th>Nucleotide change</th>
-            <th>HGVS</th>
-            <th>Consequence</th>
-        </tr>
-         {% for variant in var_list %}
-            <tr>
-                <td>{{ variant.mappings.0.seq_region_name}}</td>
-                <td> {{ variant.mappings.0.start }}</td>
-                <td> {{ variant.mappings.0.end }}</td>
-                <td> {{ variant.mappings.0.allele_string }}</td>
-                <td> {{ variant.synonyms }}</td>
-                <td> {{ variant.most_severe_consequence}}</td>
-            </tr>
-         {% endfor %}
-    </tbody>
-</table>
+    {% if var_list %}
+        <div>
+        <table class ="table table-condensed" width="100%" cellspacing="0">
+            <tbody>
+                <tr>
+                    <th>Chromosome</th>
+                    <th> Start</th>
+                    <th>End</th>
+                    <th>Nucleotide change</th>
+                    {% if "hgvs" in extra_fields %}
+                        <th>HGVS</th>
+                    {% endif %}
+                    {% if "consequence" in extra_fields %}
+                        <th>Consequence</th>
+                    {% endif %}
+                    {% if "maf" in extra_fields %}
+                        <th>MAF</th>
+                    {% endif %}
+                    {% if "variant_type" in extra_fields %}
+                        <th>Variant type</th>
+                    {% endif %}
+                    {% if "genome_build" in extra_fields %}
+                        <th>Genome Build</th>
+                    {% endif %}
+                    {% if "strand" in extra_fields %}
+                        <th>Strand</th>
+                    {% endif %}
+                </tr>
+                 {% for variant in var_list %}
+                    <tr>
+                        <td>{{ variant.mappings.0.seq_region_name}}</td>
+                        <td> {{ variant.mappings.0.start }}</td>
+                        <td> {{ variant.mappings.0.end }}</td>
+                        <td> {{ variant.mappings.0.allele_string }}</td>
+                        {% if "hgvs" in extra_fields %}
+                            <td> {{ variant.synonyms | join(", ")}}</td>
+                        {% endif %}
+                        {% if "consequence" in extra_fields %}
+                            <td> {{ variant.most_severe_consequence }}</td>
+                        {% endif %}
+                        {% if "maf" in extra_fields %}
+                            <td> {{ variant.MAF }}</td>
+                        {% endif %}
+                        {% if "variant_type" in extra_fields %}
+                            <td> {{ variant.var_class }}</td>
+                        {% endif %}
+                        {% if "genome_build" in extra_fields %}
+                            <td> {{ variant.mappings.0.assembly_name }}</td>
+                        {% endif %}
+                        {% if "strand" in extra_fields %}
+                            <td> {{ variant.mappings.0.strand }}</td>
+                        {% endif %}
+                    </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </div>
 {% endblock %}
