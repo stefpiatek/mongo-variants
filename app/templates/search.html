@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+  <div>{{ wtf.quick_form(form, form_type="horizontal")}} </div>
+
+<table class ="table table-condensed" width="100%" cellspacing="0">
+    <tbody>
+
+        <tr>
+            <th>Chromosome</th>
+            <th> Start</th>
+            <th>End</th>
+            <th>Nucleotide change</th>
+            <th>HGVS</th>
+            <th>Consequence</th>
+        </tr>
+         {% for variant in var_list %}
+            <tr>
+                <td>{{ variant.mappings.0.seq_region_name}}</td>
+                <td> {{ variant.mappings.0.start }}</td>
+                <td> {{ variant.mappings.0.end }}</td>
+                <td> {{ variant.mappings.0.allele_string }}</td>
+                <td> {{ variant.synonyms }}</td>
+                <td> {{ variant.most_severe_consequence}}</td>
+            </tr>
+         {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
