@@ -6,7 +6,7 @@ class Config:
     DEBUG = True
     TESTING = True
     SECRET_KEY = SECRET_KEY
-    MONGO_URI = "mongodb://localhost:27017/variant_app"
+    MONGO_URI = "mongodb://localhost:27017/variant_database"
 
     @staticmethod
     def init_app(app):

@@ -1,3 +1,4 @@
 input/*
 venv/*
 .DS_Store
+*.pyc
