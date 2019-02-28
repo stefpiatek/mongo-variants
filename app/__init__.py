@@ -12,7 +12,7 @@ from flask_nav import elements
 mongo = PyMongo()
 
 login_manager = LoginManager()
-login_manager.login_view = 'variants.login'
+login_manager.login_view = 'security.login'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -24,12 +24,12 @@ nav = flask_nav.Nav()
 
 logged_out = elements.Navbar('Variant App',
     elements.View('Variant search', 'variants.search'),
-    elements.View('Log in', 'variants.login'),
+    elements.View('Log in', 'security.login'),
 )
 
 logged_in = elements.Navbar('Variant App',
     elements.View('Variant search', 'variants.search'),
-    elements.View('Log out', 'variants.logout'),
+    elements.View('Log out', 'security.logout'),
 )
 nav.register_element('logged_in', logged_in)
 nav.register_element('logged_out', logged_out)
