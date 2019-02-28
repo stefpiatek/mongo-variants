@@ -4,7 +4,7 @@ from flask_script import Manager, Shell
 from app import create_app, mongo
 
 app = create_app()
-toolbar = DebugToolbarExtension(app)
+# toolbar = DebugToolbarExtension(app)
 manager = Manager(app)
 
 
