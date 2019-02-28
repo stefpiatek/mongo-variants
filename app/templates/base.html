@@ -12,11 +12,37 @@
 {% endblock %}
 
 {% block navbar %}
-    {% if current_user.is_authenticated %}
-        {{nav.logged_in.render()}}
-    {% else %}
-        {{nav.logged_out.render()}}
-    {% endif %}
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">Variant App</span>
+        </div>
+        <div class="navbar-collapse collapse" >
+          <ul class="nav nav-pills navbar-static-top">
+            <li class="active">
+              <a href="/search" title="Variant search">Variant search</a>
+            </li>
+                  {% if current_user.is_authenticated %}
+            <li class="navbar-right"><a href="/logout" title="Log out">Log out</a></li>
+            <li class="navbar-text navbar-right">Hello, {{ current_user.email }}</li>
+                   {% else %}
+                   <li><a href="/login" title="Log in">Log in</a></li>
+
+
+                  {% endif %}
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
 {% endblock %}
 
 {% block scripts %}

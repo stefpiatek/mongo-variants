@@ -2,11 +2,9 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from .config import Config
 from flask_bootstrap import Bootstrap
-from flask_login import LoginManager,  current_user
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore
-import flask_nav
-from flask_nav import elements
 
 
 mongo = PyMongo()
@@ -20,37 +18,7 @@ def load_user(user_id):
 
 
 db = SQLAlchemy()
-nav = flask_nav.Nav()
 
-
-class UserGreeting(elements.Text):
-    def __init__(self):
-        pass
-
-    @property
-    def text(self):
-        return 'Hello, {}'.format(current_user)
-
-
-def logged_out():
-    return elements.Navbar('Variant App',
-    elements.View('Variant search', 'variants.search'),
-    elements.View('Log in', 'security.login'),
-    elements.View('Register', 'security.register'),
-)
-
-
-def logged_in():
-    return elements.Navbar('Variant App',
-    elements.View('Variant search', 'variants.search'),
-    UserGreeting(),
-    elements.View('Log out', 'security.logout'),
-
-)
-
-
-nav.register_element('logged_in', logged_in)
-nav.register_element('logged_out', logged_out)
 
 def create_app():
     global mongo
@@ -65,7 +33,6 @@ def create_app():
     mongo.init_app(app)
     Bootstrap(app)
     Security(app, user_datastore)
-    nav.init_app(app)
 
     from .variants import variants as variants_blueprint
 
