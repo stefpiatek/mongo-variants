@@ -1,12 +1,17 @@
 from flask import render_template, redirect, url_for, request
 
-from flask_security import login_required
+from flask_login import login_required
 
 from .. import mongo
 from . import variants, forms
 
 
 @variants.route("/", methods=['GET', 'POST'])
+def index():
+    return render_template("index.html")
+
+
+@variants.route("/search", methods=['GET', 'POST'])
 @login_required
 def search():
     form = forms.SearchForm()
@@ -43,13 +48,19 @@ def login():
         # user should be an instance of your `User` class
         login_user(user)
 
-        flask.flash('Logged in successfully.')
 
-        next = flask.request.args.get('next')
+        next = request.args.get('next')
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
         if not is_safe_url(next):
             return flask.abort(400)
 
-        return flask.redirect(next or flask.url_for('index'))
-    return flask.render_template('login.html', form=form)
+        return redirect(next or url_for('search'))
+    return render_template('login.html', form=form)
+
+
+@variants.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
