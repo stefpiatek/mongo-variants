@@ -13,6 +13,8 @@ class Config:
     SECURITY_REGISTERABLE = True
     SECURITY_LOGIN_WITHOUT_CONFIRMATION = True
     SECURITY_SEND_REGISTER_EMAIL = False
+    SECURITY_POST_LOGIN_VIEW = '/search'
+    SECURITY_POST_REGISTER_VIEW = '/search'
 
 
     @staticmethod

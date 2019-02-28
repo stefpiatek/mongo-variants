@@ -26,7 +26,6 @@ logged_out = elements.Navbar('Variant App',
     elements.View('Variant search', 'variants.search'),
     elements.View('Log in', 'security.login'),
     elements.View('Register', 'security.register'),
-
                              )
 
 logged_in = elements.Navbar('Variant App',

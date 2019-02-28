@@ -4,5 +4,9 @@
 {% block page_content %}
 
     <h1>Welcome!</h1>
-    <p>Please log in to access the variant app</p>
+    {% if current_user.is_authenticated %}
+        You are logged in.
+    {% else %}
+        <p>Please <a href="{{ url_for('security.login') }}">log in </a> to access the variant app</p>
+    {% endif %}
 {% endblock %}
