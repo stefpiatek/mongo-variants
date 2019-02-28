@@ -1,10 +1,13 @@
 from flask import render_template, redirect, url_for, request
 
+from flask_security import login_required
+
 from .. import mongo
 from . import variants, forms
 
 
 @variants.route("/", methods=['GET', 'POST'])
+@login_required
 def search():
     form = forms.SearchForm()
     if request.method == "POST":

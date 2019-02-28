@@ -1,1 +1,2 @@
 SECRET_KEY="crwjucrwikfwo8yf5iy47d678d77847908pl0werp98438"
+SECURITY_PASSWORD_SALT="jnd984894bdfh938hfisueh93eiufb4i47"
