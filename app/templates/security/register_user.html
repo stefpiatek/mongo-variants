@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+
+{% block page_content %}
+    {% include "security/_messages.html" %}
+    <h1>{{ _('Register') }}</h1>
+    <div> {{ wtf.quick_form(register_user_form)}} </div>
+
+    {% include "security/_menu.html" %}
+{% endblock %}

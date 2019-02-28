@@ -10,6 +10,10 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECURITY_PASSWORD_SALT = SECURITY_PASSWORD_SALT
+    SECURITY_REGISTERABLE = True
+    SECURITY_LOGIN_WITHOUT_CONFIRMATION = True
+    SECURITY_SEND_REGISTER_EMAIL = False
+
 
     @staticmethod
     def init_app(app):

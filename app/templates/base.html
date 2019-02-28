@@ -11,6 +11,13 @@
     </div>
 {% endblock %}
 
+{% block navbar %}
+    {% if current_user.is_authenticated %}
+        {{nav.logged_in.render()}}
+    {% else %}
+        {{nav.logged_out.render()}}
+    {% endif %}
+{% endblock %}
 
 {% block scripts %}
     {{ super() }}
