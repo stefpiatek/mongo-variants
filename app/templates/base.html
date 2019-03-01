@@ -24,18 +24,17 @@
           <span class="navbar-brand">Variant App</span>
         </div>
         <div class="navbar-collapse collapse" >
-          <ul class="nav nav-pills navbar-static-top">
+          <ul class="nav nav-tabs navbar-static-top">
             <li class="active">
-              <a href="/search" title="Variant search">Variant search</a>
+              <a href="{{ url_for('variants.search') }}" title="Variant search">Variant search</a>
             </li>
-                  {% if current_user.is_authenticated %}
-            <li class="navbar-right"><a href="/logout" title="Log out">Log out</a></li>
-            <li class="navbar-text navbar-right">Hello, {{ current_user.email }}</li>
-                   {% else %}
-                   <li><a href="/login" title="Log in">Log in</a></li>
-
-
-                  {% endif %}
+              {% if current_user.is_authenticated %}
+                <li class="navbar-right"><a href="/logout" title="Log out">Log out</a></li>
+                <li class="navbar-text navbar-right">Hello, {{ current_user.email }}</li>
+              {% else %}
+                 <li class="navbar-right"><a href="/register" title="Register">Register</a></li>
+                 <li class="navbar-right"><a href="/login" title="Log in">Log in</a></li>
+              {% endif %}
 
 
           </ul>
