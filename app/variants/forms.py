@@ -5,11 +5,14 @@ from wtforms import StringField, SelectMultipleField, SubmitField, ValidationErr
 
 
 class SearchForm(FlaskForm):
-    search = StringField('Search region', validators=[DataRequired()])
+    search = StringField("Search region", validators=[DataRequired()])
     FIELD_CHOICES = (
-        ("maf", "MAF"), ("variant_type", "Variant Type"),
-        ("hgvs", "HGVS"), ("consequence", "Consequence"),
-        ("genome_build", "Genome Build"), ("strand", "Strand")
+        ("maf", "MAF"),
+        ("variant_type", "Variant Type"),
+        ("hgvs", "HGVS"),
+        ("consequence", "Consequence"),
+        ("genome_build", "Genome Build"),
+        ("strand", "Strand"),
     )
     extra_fields = SelectMultipleField("Extra fields", choices=FIELD_CHOICES)
     submit = SubmitField("Search for variants")
@@ -22,6 +25,6 @@ class SearchForm(FlaskForm):
         except ValueError:
             raise ValidationError(f'{base_error}, issue with ":" found')
         try:
-            start, end = [int(x) for x in positions.split('-')]
+            start, end = [int(x) for x in positions.split("-")]
         except ValueError:
             raise ValidationError(f'{base_error}, issue with "-" found')

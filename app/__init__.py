@@ -10,7 +10,8 @@ from flask_security import Security, SQLAlchemyUserDatastore
 mongo = PyMongo()
 
 login_manager = LoginManager()
-login_manager.login_view = 'security.login'
+login_manager.login_view = "security.login"
+
 
 @login_manager.user_loader
 def load_user(user_id):

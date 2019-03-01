@@ -3,10 +3,10 @@ import pymongo
 
 from pymongo import MongoClient
 
-client = MongoClient('localhost', 27017)
+client = MongoClient("localhost", 27017)
 
 
-variants = 'input/all_vep_variants.json'
+variants = "input/all_vep_variants.json"
 
 db = client.variant_database
 
@@ -15,14 +15,15 @@ collection = db.variants
 
 variant_checker = {}
 
-with open(variants, 'r') as variants:
+with open(variants, "r") as variants:
     for variant in variants:
         variant_dict = {}
         variant_key = ""
         v = json.loads(variant)
         collection.insert_one(v)
 
-        '''
+        """
+        # not used but might be useful at some point
         for key, value in v.items():
             if key == 'mappings':
                 for anno_name, anno_value in value[0].items():
@@ -43,7 +44,4 @@ with open(variants, 'r') as variants:
                 print(tmp_original)
                 print(tmp_current)
                 print("---")
-        '''
-
-
-
+        """
