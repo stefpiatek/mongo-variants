@@ -31,7 +31,7 @@ At least Python3.6 and mongo db
 2. Please see the [mongo db docuementation](https://docs.mongodb.com/manual/installation/) for installation
 
 ### Set up of project
-. Clone repository 
+1. Clone repository 
 
     ```
     git clone https://github.com/stefpiatek/mongo-variants.git
